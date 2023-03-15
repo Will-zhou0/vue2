@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pdbe_molstar</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-3.1.0.css">
+
+    <!-- For Light Theme include this css file instead of the above -->
+    <!--<link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-light-3.1.0.css">-->
+    <!--
+    Tip: Set `bgColor` option to white ({r:255,g:255,b:255}) for light theme
+    -->
+
+
+    <!-- JS -->
+    <script type="text/javascript" src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/pdbe-molstar-plugin-3.1.0.js"></script>
+    <style>
+        #myViewer{
+          /* float:right; */
+          width:400px;
+          height: 500px;
+          position:relative;
+        }
+    </style>
+</head>
+<body>
+    <div style="float: left;">
+        <h4 >PDBe Mol* JS Plugin Demo</h4>
+
+        <!-- Molstar container -->
+        <div id="myViewer"></div>
+    </div>
+</body>
+<script>
+    //Create plugin instance
+    var viewerInstance = new PDBeMolstarPlugin();
+
+    //Set options (** All the available options are listed below in the documentation)
+    var options = {
+	    // moleculeId: '1cbs', // pdb id
+        customData:{ 
+            // url: 'https://www.ebi.ac.uk/pdbe/model-server/v1/1cbs/atoms?label_entity_id=1&auth_asym_id=A&encoding=bcif',
+            url:"1_out_out.pdb", 
+            format: 'pdb', 
+            // binary:true 
+        }, // 从特定数据源加载数据
+        visualStyle:'gaussian-surface', // 可视化风格 默认：'cartoon'
+        bgColor:{r:255, g:255, b:255}, // 背景颜色 默认{r:0, g:0, b:0}
+        highlightColor:{r:255, g:255, b:255}, //高亮颜色 默认{r:255, g:102, b:153}
+        selectColor:{r:0, g:0, b:0}, // 设置默认颜色出现在 shift 键 + 鼠标单击 Default {r:12, g:13, b:17}
+        // validationAnnotation:true, // 加载验证报表注释。在菜单中添加“注释”控件
+        // domainAnnotation:true, // 加载域注释。在菜单中添加“注释”控件
+        hideControls: true, // 隐藏控制菜单
+        // expanded:false, //  默认情况下在加载时全屏显示
+        // landscape:true, // 设置横向视图。控件将类似于全屏视图
+        // sequencePanel:true, // Display Sequence panel
+    }
+    
+    //Get element from HTML/Template to place the viewer 
+    var viewerContainer = document.getElementById('myViewer');
+
+    //Call render method to display the 3D view
+    viewerInstance.render(viewerContainer, options);
+</script>
+</html>
